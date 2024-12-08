@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>Фто 2</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+  </head>
+
+  <body>
+    <h1>Авторизация</h1>
+    <form method="POST" action="result">
+        {% csrf_token %}
+        <label for="fname">Имя</label><br>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="lname">Фамилия</label><br>
+        <input type="text" id="lname" name="lname">
+        <input  type="submit" value="Войти">
+      </form>
+  </body>
+</html>
