@@ -7,15 +7,13 @@
   </head>
 
   <body>
-    <h1>Войдите в учетную запись</h1>
-    <form action="../auth" method="post">
-      {% csrf_token %}
-      <label>Логин</label>
-      <input type="text" name="login">
-      <label>Пароль</label>
-      <input type="text" name="pass">
-      <button type="submit">Войти</button>
-    </form>
-    <a href="../reg"><button>У меня нету :(</button></a>
+    <a href='create'  ><button>Создать нового пользователя</button></a>
+    {% for i in Users %}
+    <div style="background-color: antiquewhite;">
+      <h1>{{i.login}}</h1>
+      <a href='read/{{i.id}}'  ><button>More Data</button></a>
+      <a href='delete/{{i.id}}'  ><button>Delete</button></a>
+    </div>
+    {% endfor %}
   </body>
 </html>
