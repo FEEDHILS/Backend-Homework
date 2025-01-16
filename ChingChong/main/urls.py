@@ -1,14 +1,12 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from .models import User
 
 urlpatterns = [
-    path('', views.index),
-    path('read/<int:id>', views.read),
-    path('create', views.create),
-    path('update/<int:id>', views.update),
-    path('delete/<int:id>', views.delete),
-    # # Чтобы можно было передавать пользователей (их id)
-    # path('greet/id/<int:id>', views.greet),
-    # path('test', views.testView.as_view()),
+    path('', views.index, name="index"),
+    path('', include('django.contrib.auth.urls')),
+    path('registration/', views.reg, name="registration"),
+    path('delete/', views.delete, name="delete"),
+    path('reset/', views.reset, name="reset"),
+    path('change/<uidb64>/<token>/', views.change_password, name="change_password_validation")
 ]

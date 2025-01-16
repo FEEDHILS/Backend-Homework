@@ -1,19 +1,36 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <title>Фто</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-  </head>
+{% extends "base.html" %}
+{% block title %}Home{% endblock title%}
+{% block content %}
+  <p class="display-4">Добро пожаловать, {{ user }}</p>
+  {% if user.is_authenticated %}
+  <form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-secondary">Выйти из Аккаунта</button>
+  </form>
+  {% endif %}
 
-  <body>
-    <a href='create'  ><button>Создать нового пользователя</button></a>
-    {% for i in Users %}
-    <div style="background-color: antiquewhite;">
-      <h1>{{i.login}}</h1>
-      <a href='read/{{i.id}}'  ><button>More Data</button></a>
-      <a href='delete/{{i.id}}'  ><button>Delete</button></a>
-    </div>
-    {% endfor %}
-  </body>
-</html>
+  {% if form %}
+    <p class="display-6 mt-5">Данные Аккаунта:</p>
+    <form method="post">
+      {% csrf_token %}
+      {% for field in form %}
+            <div class="row col-3 mb-3">
+                {{ field.label_tag }}
+
+                <input type={{field.widget_type}} value="{{ field.value|default:'' }}" 
+                    id={{ field.auto_id }} name={{ field.name }} class="form-control" />
+
+                {% if field.errors %}
+                    <div class="alert alert-warning" role="alert">
+                        <p>{{ field.errors }}</p>
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+      <button type="submit" class="btn btn-primary mb-4">Изменить Данные</button>
+    </form>
+    <a class="btn btn-danger row col-3" href={% url "delete" %} role="button">Удалить аккаунт</a>
+    
+  {% endif %}
+  
+{% endblock content%}
