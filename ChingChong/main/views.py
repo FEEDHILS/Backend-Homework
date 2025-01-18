@@ -5,6 +5,7 @@ from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 
 from .forms import *
+from django.core.mail import send_mail
 
 
 def index(req):

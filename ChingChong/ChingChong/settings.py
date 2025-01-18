@@ -27,8 +27,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-if DEBUG:
-    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
+EMAIL_HOST_USER = 'razzsans@yandex.com'
+EMAIL_HOST_PASSWORD = 'susocjodviuwktpt'
+DEFAULT_FROM_EMAIL = 'razzsans@yandex.com'
 
 # Application definition
 
